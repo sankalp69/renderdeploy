@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy application files
 COPY .env .
 COPY requirements.txt .
-COPY app.py .
+COPY main.py .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
@@ -29,4 +29,4 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl --fail http://localhost:8501/_stcore/health || exit 1
 
 # Command to run the application
-ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--browser.gatherUsageStats=false"]
+ENTRYPOINT ["streamlit", "run", "main.py", "--server.port=8501", "--browser.gatherUsageStats=false"]
